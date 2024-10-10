@@ -34,3 +34,19 @@ This is how script looks like on one endpoint:
 You can run whole collection by runner on Postman. I recommend to run endpoints by following order:
 
 ![Runner](https://github.com/user-attachments/assets/abcec051-d929-49c2-b367-c8b5d8055b39)
+
+You can run collection by Newman via PowerShell CLI. For that you need:
+
+-Node.js  https://nodejs.org/en/download/package-manager. After instalation you can open cmd and write command node --version
+-Install Newman from this command line: -npm install -g newman. After instalation you can write similar command line like below. Instead node use newman --version
+
+Open PowerShell go to directory where you downloaded MyCollection.json and use CLI: newman run .\MyCollection.json
+![Newman](https://github.com/user-attachments/assets/81895699-9e97-4f98-9e3a-b1f30ca12b08)
+
+For add an additional report install thirdparty addon: npm install -g newman-reporter-htmlextra
+https://www.npmjs.com/package/newman-reporter-htmlextra
+
+
+
+
+
