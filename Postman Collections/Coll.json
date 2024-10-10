@@ -390,25 +390,25 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "b55de147-e962-47de-9e34-ce1dea8ce728",
 						"exec": [
 							"console.log(pm.collectionVariables.get(\"BookId\"));"
 						],
 						"type": "text/javascript",
-						"packages": {},
-						"id": "b55de147-e962-47de-9e34-ce1dea8ce728"
+						"packages": {}
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
+						"id": "7064e44a-a3ec-4ebc-82d6-0995d4c745aa",
 						"exec": [
 							"pm.test(\"Status code is 204\", () => {\r",
 							"    pm.response.to.have.status(204)\r",
 							"})"
 						],
 						"type": "text/javascript",
-						"packages": {},
-						"id": "7064e44a-a3ec-4ebc-82d6-0995d4c745aa"
+						"packages": {}
 					}
 				}
 			],
@@ -430,7 +430,6 @@
 					],
 					"variable": [
 						{
-							"id": "27135e51-1c5b-40a0-a82e-769a9661ad33",
 							"key": "id",
 							"value": "{{BookId}}"
 						}
