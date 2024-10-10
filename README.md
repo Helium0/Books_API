@@ -44,8 +44,12 @@ Open PowerShell go to directory where you downloaded MyCollection.json and use C
 ![Newman](https://github.com/user-attachments/assets/81895699-9e97-4f98-9e3a-b1f30ca12b08)
 
 For add an additional report install thirdparty addon: npm install -g newman-reporter-htmlextra
+
 https://www.npmjs.com/package/newman-reporter-htmlextra
 
+When command will finish you will get html report looks like this:
+I attached file in to this repository like named: Postman_Books_Library + time_stamp. You can download it easily
+![Report](https://github.com/user-attachments/assets/0799bef2-e47d-44d3-8395-c62578d2eadb)
 
 
 
