@@ -20,6 +20,17 @@ I choosed two lines: "checkedOut" and "yearPublished". Of course you can define 
 
 
 
+
+
+
+
+This is how script looks like on one endpoint:
+
+
+
+![GetAllBooks](https://github.com/user-attachments/assets/8ab52a82-cb6d-4a64-9d18-e2b2f9ec3b8d)
+
+
 You can run whole collection by runner on Postman. I recommend to run endpoints by following order:
 
 ![Runner](https://github.com/user-attachments/assets/abcec051-d929-49c2-b367-c8b5d8055b39)
