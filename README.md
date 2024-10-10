@@ -1,11 +1,25 @@
 # Books API testing from Postman 🧪
 
 During my learning on January 2024 about REST-API I decided to create a repository. To be honest I have forgotten about this project :D
+To download .json file go to Postman Collections folder and download Coll.json
+After completing it open Postman tool and Import Coll.json
 
 This API is simple and easy to understand. This is how hierarchy is presented:
 
 ![Postman Flow](https://github.com/user-attachments/assets/7123848c-6630-4ec3-b810-683e7c2d0ed0)
 
 On each endpoint I wrote some validations in JavaScript programming language. I initialized local and collection variables.  
-Variable name BookId is dynamic. Every each send endpoint named add book will change BookId value.
+Variable name BookId is dynamic. Every each request endpoint named "add book" will change BookId value.
 
+For testing purpose you can change JSON body on endpoint /books
+![Books](https://github.com/user-attachments/assets/2d94a368-3e39-4caf-8afe-4f9f2a6ce870)
+
+When do you want update your data you can do it on this endpoint /books/:id
+I choosed two lines: "checkedOut" and "yearPublished". Of course you can define different one or add more but remember you have to change scripts =). If no you will get errors
+![Update](https://github.com/user-attachments/assets/4df05d2a-0916-4474-9e7c-8795011776f5)
+
+
+
+You can run whole collection by runner on Postman. I recommend to run endpoints by following order:
+
+![Runner](https://github.com/user-attachments/assets/abcec051-d929-49c2-b367-c8b5d8055b39)
