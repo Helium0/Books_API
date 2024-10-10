@@ -41,9 +41,10 @@ You can run collection by Newman via PowerShell CLI. For that you need:
 -Install Newman from this command line: -npm install -g newman. After instalation you can write similar command line like below. Instead node use newman --version
 
 Open PowerShell go to directory where you downloaded MyCollection.json and use CLI: newman run .\MyCollection.json
+
 ![Newman](https://github.com/user-attachments/assets/81895699-9e97-4f98-9e3a-b1f30ca12b08)
 
-For add an additional report install thirdparty addon: npm install -g newman-reporter-htmlextra
+For add an additional report install third-party addon: npm install -g newman-reporter-htmlextra
 
 https://www.npmjs.com/package/newman-reporter-htmlextra
 
