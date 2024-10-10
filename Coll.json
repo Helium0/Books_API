@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "2e74ffab-2a5a-4579-96a2-4eb16c60d144",
+		"name": "Postman_Books_Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd97385e-4602-4278-80de-dc6897017fce",
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Json structure\", () =>{\r",
+							"    let response = pm.response.json();\r",
+							"    let dataAA = Object.keys(response[0]).length;\r",
+							"    pm.expect(dataAA).to.eql(8);\r",
+							"    pm.expect(dataAA).to.be.a('number')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"My book2\", () => {\r",
+							"    let response = pm.response.json();\r",
+							"    response.forEach(function(book){\r",
+							"    if(book.title === \"TEST TEST TEST\")\r",
+							"    pm.expect(book).to.haveOwnProperty(\"id\")\r",
+							"});\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Assersions author\", () => {\r",
+							"    let response = pm.response.json();\r",
+							"    let myAuthor;\r",
+							"    response.forEach((autor)=>{\r",
+							"    if(autor.author === \"PATRYK\"){\r",
+							"        myAuthor = autor\r",
+							"    }\r",
+							"});\r",
+							"    pm.expect(myAuthor.author).to.eql(\"PATRYK\")\r",
+							"    pm.expect(myAuthor.genre).to.eql(\"fiction\")\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "33b9048c-3a4c-44c4-9698-8173411c63b5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/books"
+			},
+			"response": []
+		},
+		{
+			"name": "get fiction books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"console.log(response)\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Books written by PATRYK\", () => {\r",
+							"    let response = pm.response.json();\r",
+							"    let count = 0;\r",
+							"\r",
+							"    for(let data of response){\r",
+							"    if(data.author === \"PATRYK\"){\r",
+							"        console.log(data)\r",
+							"        count +=1\r",
+							"    }\r",
+							"}\r",
+							"    pm.expect(count).to.eql(1)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "88bd1661-f376-4713-9acd-ea0c94488e64"
+					}
+				}
+			],
+			"id": "7c17f8f9-dffc-4772-9e60-7080b3a74102",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/books?genre=fiction&checkedOut=false",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "fiction"
+						},
+						{
+							"key": "checkedOut",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a21971ce-155f-423a-9154-d41e2d26a536",
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 201\", () => {\r",
+							"    pm.response.to.have.status(201)\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"BookId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "ecfea18a-3dd5-4555-b7cb-937abdd7133f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "postmanrulz",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"TEST TEST TEST\",\r\n  \"author\": \"PATRYK\",\r\n  \"genre\": \"fiction\",\r\n  \"yearPublished\": 2024\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/books"
+			},
+			"response": []
+		},
+		{
+			"name": "get book by id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.collectionVariables.get(\"BookId\"));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "2e206805-32fd-4ecc-92c5-4092a9b882d0"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID is the same\", () => {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"BookId\"))\r",
+							"    pm.expect(jsonData.yearPublished).to.be.a(\"number\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "2e7d759a-17c3-4c4f-b751-bc0c9c99ac8a"
+					}
+				}
+			],
+			"id": "96032f44-25de-4f7c-a994-32ba77a5737e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/books/:id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"id": "40340c56-1126-4874-b0b0-a82fb4e3264e",
+							"key": "id",
+							"value": "{{BookId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkout a book",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "1a137492-5980-467b-a6b5-4544f5bcd6c9"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"console.log(response);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Checkout is true\", () => {\r",
+							"    pm.expect(response.checkedOut).to.be.true\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "961aa0b0-8982-42e6-8ab4-3971d84cbd8a"
+					}
+				}
+			],
+			"id": "0322a117-cb72-48d4-bf6a-b2b95bc1e009",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"checkedOut\": true,\r\n  \"yearPublished\": 2025\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/books/:id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"id": "4ea75a0c-fdf6-4aeb-8df2-4cea5095d108",
+							"key": "id",
+							"value": "{{BookId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get book by id after patch",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.collectionVariables.get(\"BookId\"));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "74fc42e9-99e4-4fb3-8f23-9dfb30528c52"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Patched book\", () => {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.be.eql(pm.collectionVariables.get(\"BookId\"))\r",
+							"    pm.expect(jsonData.checkedOut).to.be.true\r",
+							"    pm.expect(jsonData.yearPublished).to.eql(2025)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "be78b7f0-14cd-4ca5-be8d-5c4febb7ddc4"
+					}
+				}
+			],
+			"id": "d2c2018e-924c-4ec9-8e94-0b014363b2d2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/books/:id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"id": "71ed71af-0112-48bc-81f8-c3eb24c251e0",
+							"key": "id",
+							"value": "{{BookId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a book",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.collectionVariables.get(\"BookId\"));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "b55de147-e962-47de-9e34-ce1dea8ce728"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", () => {\r",
+							"    pm.response.to.have.status(204)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "7064e44a-a3ec-4ebc-82d6-0995d4c745aa"
+					}
+				}
+			],
+			"id": "963c1908-41bb-425e-8419-080bacf05732",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/books/:id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"id": "27135e51-1c5b-40a0-a82e-769a9661ad33",
+							"key": "id",
+							"value": "{{BookId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get books after delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assersions\", () => {\r",
+							"    response.find((bookid) => {\r",
+							"    if(bookid.id === pm.collectionVariables.get(\"BookId\"))\r",
+							"    pm.expect(bookid).to.be.a(\"object\")\r",
+							"    pm.expect(bookid).to.haveOwnProperty(\"genre\")\r",
+							"});\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let findBook;\r",
+							"\r",
+							"for(let data of response){\r",
+							"    if(data.id === pm.collectionVariables.get(\"BookId\")){\r",
+							"        findBook = data;\r",
+							"    };\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Undefined\", () => {\r",
+							"    pm.expect(findBook).to.be.a(\"undefined\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "19941fcd-3625-4c28-9e00-4e55982f95e5"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "d87f9e8d-07e6-490c-808e-58ba08710b41"
+					}
+				}
+			],
+			"id": "9632ba4c-c4d1-4b60-af6c-8ca5c6ad3dc6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/books"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "postmanrulz",
+			"key": "api-key"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fea749eb-8967-4afb-b100-58f2478ef9b0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e227758d-4613-4e6d-b564-ae3434bf0e2c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://library-api.postmanlabs.com"
+		},
+		{
+			"key": "skillcheckBaseUrl",
+			"value": "https://postman-echo.com"
+		},
+		{
+			"key": "favoriteActor",
+			"value": "S.Stallone"
+		},
+		{
+			"key": "BookId",
+			"value": ""
+		}
+	]
+}
