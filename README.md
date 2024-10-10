@@ -40,17 +40,18 @@ You can run whole collection by runner on Postman. I recommend to run endpoints 
 You can run collection by Newman via PowerShell CLI. For that you need:
 
 -Node.js  https://nodejs.org/en/download/package-manager. After instalation you can open cmd and write command node --version
+
 -Install Newman from this command line: -npm install -g newman. After instalation you can write similar command line like below. Instead node use newman --version
 
 Open PowerShell go to directory where you downloaded MyCollection.json and use CLI: newman run .\MyCollection.json
 
 ![Newman](https://github.com/user-attachments/assets/81895699-9e97-4f98-9e3a-b1f30ca12b08)
 
-For add an additional report install third-party addon: npm install -g newman-reporter-htmlextra
+To add an additional report install third-party addon: npm install -g newman-reporter-htmlextra
 
 https://www.npmjs.com/package/newman-reporter-htmlextra
 
-When command will finish you will get html report looks like this:
+When instalation will finish write newman run .\MyCollection.json -r 'cli,htmlextra' You will get html report looks like this:
 I attached file in to this repository like named: Postman_Books_Library + time_stamp. You can download it easily.
 ![Report](https://github.com/user-attachments/assets/0799bef2-e47d-44d3-8395-c62578d2eadb)
 
