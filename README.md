@@ -1,8 +1,8 @@
 # Books API testing from Postman 🧪
 
 During my learning on January 2024 about REST-API I decided to create a repository. To be honest I have forgotten about this project :D
-To download .json file go to Postman Collections folder and download Coll.json
-After completing it open Postman tool and Import Coll.json
+To download .json file go to Postman Collections folder and download MyCollection.json
+After completing it open Postman tool and Import MyCollection.json
 
 This API is simple and easy to understand. This is how hierarchy is presented:
 
