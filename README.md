@@ -51,10 +51,10 @@ To add an additional report install third-party addon: npm install -g newman-rep
 
 https://www.npmjs.com/package/newman-reporter-htmlextra
 
-When instalation will finish write newman run .\MyCollection.json -r 'cli,htmlextra' You will get html report looks like this:
-I attached file in to this repository like named: Postman_Books_Library + time_stamp. You can download it easily.
+When instalation is finished write: newman run .\MyCollection.json -r 'cli,htmlextra' You will get html report looks like this:
+
 ![Report](https://github.com/user-attachments/assets/0799bef2-e47d-44d3-8395-c62578d2eadb)
 
-
+I attached this file in to this repository named: Postman_Books_Library + time_stamp. You can download it easily.
 
 
