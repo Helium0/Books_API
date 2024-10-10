@@ -6,6 +6,53 @@
 	},
 	"item": [
 		{
+			"name": "add a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a21971ce-155f-423a-9154-d41e2d26a536",
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 201\", () => {\r",
+							"    pm.response.to.have.status(201)\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"BookId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "ecfea18a-3dd5-4555-b7cb-937abdd7133f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "postmanrulz",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"TEST TEST TEST\",\r\n  \"author\": \"PATRYK\",\r\n  \"genre\": \"fiction\",\r\n  \"yearPublished\": 2024\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/books"
+			},
+			"response": []
+		},
+		{
 			"name": "get books",
 			"event": [
 				{
@@ -126,53 +173,6 @@
 						}
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "add a book",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a21971ce-155f-423a-9154-d41e2d26a536",
-						"exec": [
-							"let jsonData = pm.response.json();\r",
-							"\r",
-							"pm.test(\"Status code is 201\", () => {\r",
-							"    pm.response.to.have.status(201)\r",
-							"});\r",
-							"\r",
-							"pm.collectionVariables.set(\"BookId\", jsonData.id);"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"id": "ecfea18a-3dd5-4555-b7cb-937abdd7133f",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "api-key",
-						"value": "postmanrulz",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"TEST TEST TEST\",\r\n  \"author\": \"PATRYK\",\r\n  \"genre\": \"fiction\",\r\n  \"yearPublished\": 2024\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "{{baseURL}}/books"
 			},
 			"response": []
 		},
