@@ -1,7 +1,7 @@
 # Books API testing from Postman 🧪
 
 During my learning on January 2024 about REST-API I had burried repository. Finally I had some free time to describe it and marked as finished.
-You can read more about this API here: https://www.postman.com/postman/postman-library-api-v2/documentation/udathed/postman-library-api-v2-docs this is official link and you have whole documentation there.
+You can read more about this API here: https://www.postman.com/postman/postman-library-api-v2/documentation/udathed/postman-library-api-v2-docs this is official link.
 
 For download .json file go to Postman Collections folder and download MyCollection.json
 After completing it open Postman tool and Import MyCollection.json
