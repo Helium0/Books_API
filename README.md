@@ -4,16 +4,16 @@ During my learning on January 2024 about REST-API I had burried repository. Fina
 You can read more about this API here: https://www.postman.com/postman/postman-library-api-v2/documentation/udathed/postman-library-api-v2-docs this is official link.
 
 For download .json file go to Postman Collections folder and download MyCollection.json
-After completing it open Postman tool and Import MyCollection.json
+then open Postman tool and Import MyCollection.json
 
 This API is simple and easy to understand. This is how hierarchy is presented:
 
 ![Postman Flow](https://github.com/user-attachments/assets/7123848c-6630-4ec3-b810-683e7c2d0ed0)
 
-On each endpoint I wrote some validations in JavaScript programming language. I initialized local and collection variables.  
-Variable name BookId is dynamic. Every each request endpoint named "add book" will change BookId value.
+On each endpoint I wrote validations in JavaScript programming language. I initialized local and collection variables.  
+Variable name BookId is dynamic. Every each endpoint request named "add book" will change BookId value.
 
-For testing purpose you can change JSON body on endpoint /books
+For testing purpose you can change JSON body endpoint /books
 ![Books](https://github.com/user-attachments/assets/2d94a368-3e39-4caf-8afe-4f9f2a6ce870)
 
 When do you want update your data you can do it on this endpoint /books/:id
